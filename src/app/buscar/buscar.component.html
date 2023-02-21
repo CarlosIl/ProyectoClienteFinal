@@ -1,0 +1,5 @@
+<h3>Controles</h3>
+<p>Ancho de la ventana: <input type="range" min="10" max="100" [(ngModel)]="ancho"></p>
+<p>Alto de la ventana: <input type="range" min="10" max="200" [(ngModel)]="alto"></p>
+<!-- Gracias a ngModel podemos cambiar el acho y alto del inframe en tiempo real pasandole los datos al componente -->
+<app-web anchoPag="{{ancho}}" altoPag="{{alto}}"></app-web>

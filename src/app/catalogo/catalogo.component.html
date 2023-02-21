@@ -1,0 +1,11 @@
+<h1>Catálogo de productos</h1>
+<!-- Si no recoge los datos del JSON nos sacará una animación de carga -->
+<!-- Una vez recogidos uno a uno pasará los datos al componente carta -->
+<div *ngIf="productos!=null; else espera" class="grid">
+    <div *ngFor="let producto of productos.products">
+        <app-carta [nombre]="producto.title" [precio]="producto.price" [descuento]="producto.discountPercentage" [descripcion]="producto.description" ></app-carta>
+    </div>
+</div>
+<ng-template #espera>
+    <mat-spinner color="accent" [ngStyle]="{'align-content':'center','margin':'auto'}"></mat-spinner>
+</ng-template>

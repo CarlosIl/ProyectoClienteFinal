@@ -1,0 +1,53 @@
+<form (ngSubmit)="submit()" [formGroup]="formularioClientes">
+    <h3>Datos Personales</h3>
+    <hr />
+
+    <label for="nombre"><b>Nombre: </b></label>
+    <input type="text" placeholder="Introduzca su nombre" class="form-control" formControlName="nombre" required
+        [ngClass]="{ 'incorrecto': this.formularioClientes.get('nombre')?.errors?.['required'] , 'correcto': !this.formularioClientes.get('nombre')?.errors?.['required']}">
+    <span *ngIf="this.formularioClientes.get('nombre')?.errors?.['required']">
+        (El nombre no puede quedar vacío)
+    </span>
+    <br><br>
+
+    <label for="passwd"><b>Contraseña: </b></label>
+    <input type="password" placeholder="Introduzca su contraseña" class="form-control" formControlName="passwd" required
+        [ngClass]="{ 'incorrecto': this.formularioClientes.get('passwd')?.errors?.['required'] , 'correcto': !this.formularioClientes.get('passwd')?.errors?.['required']&&!this.formularioClientes.get('passwd')?.errors?.['minlength']}">
+    <span *ngIf="this.formularioClientes.get('passwd')?.errors?.['required']">
+        (La contraseña no puede quedar vacía)
+    </span>
+    <span *ngIf="this.formularioClientes.get('passwd')?.errors?.['minlength']">
+        (La contraseña debe tener mínimo 4 carácteres)
+    </span>
+    <br><br>
+
+    <label for="edad"><b>Edad: </b></label>
+    <input type="number" placeholder="Introduzca su edad" class="form-control" formControlName="edad" required
+        [ngClass]="{ 'incorrecto': this.formularioClientes.get('edad')?.errors?.['required']||this.formularioClientes.get('edad')?.errors?.['comprobarEdad'] , 'correcto': !this.formularioClientes.get('edad')?.errors?.['required']&&!this.formularioClientes.get('edad')?.errors?.['comprobarEdad']}">
+    <span *ngIf="this.formularioClientes.get('edad')?.errors?.['required']">
+        (La edad no puede quedar vacía)
+    </span>
+    <span *ngIf="this.formularioClientes.get('edad')?.errors?.['comprobarEdad']">
+        (Debes ser mayor de 18 y menor de 65)
+    </span>
+    <br><br>
+
+    <label for="email"><b>Email: </b></label>
+    <input type="text" placeholder="Introduzca su email" class="form-control" formControlName="email">
+    <br><br>
+
+    <mat-form-field appearance="fill">
+        <mat-label for="sub"><b>Subscripción: </b></mat-label>
+        <mat-select formControlName="sub">
+            <mat-option *ngFor="let subscripcion of subscripciones" [value]="subscripcion.tipo">
+                {{subscripcion.tipo}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span *ngIf="this.formularioClientes.get('sub')?.errors?.['required']">
+        (El tipo de subscripción no puede quedar vacía)
+    </span>
+    <br><br>
+
+    <button mat-raised-button type="submit">Registrarse</button>
+</form>

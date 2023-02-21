@@ -9,6 +9,7 @@ export class DatosService {
   //Si no tienes conexión o la web está caida utilizar esta línea para usar el fichero json
   //url1:string="./assets/json/products.json"
   url2:string="http://localhost:80/supermercado/"
+  //Para utilizar la base de datos y los php usar el zip
   constructor(private http: HttpClient) { }
   recogerJSON() {
     return this.http.get(this.url1);
